@@ -1,0 +1,5 @@
+<div *ngFor="let link of links$ | async">
+  <a [routerLink]="[link.route]">
+    <h2>{{link.title}} - {{ link.date }}</h2>
+  </a>
+</div>
