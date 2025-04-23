@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /alnitak/
+Allow: /device-comparator/
+Allow: /blog/
+Allow: /blog/archives/
+Allow: /blog/categories/
+Allow: /blog/tags/ 
+Disallow: /blog/vendors/
+Disallow: /blog/js/
+Disallow: /blog/css/
+Disallow: /blog/fonts/
+Disallow: /blog/vendors/
+Disallow: /blog/fancybox/
+Sitemap: http://andy23512.github.io/blog/sitemap.xml
