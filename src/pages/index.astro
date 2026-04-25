@@ -4,14 +4,99 @@ import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const pageGroup = [
+	{
+		name: 'CharaChorder related',
+		pages: [
+			{
+				title: 'Tangent\'s Blog',
+				description: 'An unofficial CharaChorder and Forge related articles and notes',
+				url: 'https://andy23512.github.io/blog/',
+			},
+			{
+				title: 'Tangent 的部落格',
+				description: '有關 CharaChorder 和 Forge 的非官方筆記和文章',
+				url: 'https://andy23512.github.io/blog-zh-tw/',
+			},
+			{
+				title: 'Alnitak',
+				description: 'An unofficial practice tool tailored for CharaChorder 3D input devices',
+				url: 'https://andy23512.github.io/alnitak/',
+			},
+			{
+				title: 'CCOS Meta Viewer',
+				description: 'An unofficial data viewer for the official CharaChorder Firmware Meta API',
+				url: 'https://andy23512.github.io/ccos-meta-viewer/',
+			},
+			{
+				title: 'Chara Chronus',
+				description: 'An unofficial chronicle for CharaChorder',
+				url: 'https://andy23512.github.io/chara-chronus/',
+			},
+			{
+				title: 'Device Comparator',
+				description: 'An unofficial website for comparing the differences between the specs of CharaChorder devices',
+				url: 'https://andy23512.github.io/device-comparator/',
+			},
+			{
+				title: 'TanChord Code',
+				description: 'An unofficial, experimental editor that allows you to edit the chord library of your CharaChorder device, similar to editing code in a code editor',
+				url: 'https://andy23512.github.io/tccode/',
+			}
+		]
+	},
+	{
+		name: 'Toy Projects',
+		pages: [
+			{
+				title: 'Conditional Rock-Paper-Scissors',
+				description: 'A simple conditional RPS game written with support of OpenSpec',
+				url: 'https://andy23512.github.io/crps/',
+			},
+			{
+				title: 'Default Display Viewer',
+				description: 'A viewer for viewing the default display style of each HTML element',
+				url: 'https://andy23512.github.io/default-display-viewer/',
+			},
+			{
+				title: 'Praise Generator',
+				description: ' ༼ つ ◕_◕ ༽つ Praise Generator ༼ つ ◕_◕ ༽つ',
+				url: 'https://andy23512.github.io/praise-generator/',
+			}
+		]
+	}
+]
 ---
 
 <Layout>
-	<div class="text-white bg-gray-800 h-screen">
-		<div class="px-4 py-2 bg-gray-900">
+	<div class="text-white bg-gray-800 h-screen flex flex-col">
+		<div class="px-4 py-2 bg-gray-900 flex-none flex items-center gap-2">
 			<h1 class="text-2xl">
-	      Tangent's Home Page
+	      Tangent's GitHub Home Page
 			</h1>
+			-
+			<h2 class="text-lg">
+				A collection of my GitHub pages
+			</h2>
+		</div>
+		<div class="flex-1 min-h-0 overflow-auto">
+			{
+				pageGroup.map(group => (
+					<div class="p-4">
+						<h3 class="text-xl mb-2">{group.name}</h3>
+						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+							{
+								group.pages.map(page => (
+									<a href={page.url} target="_blank" class="block p-4 bg-gray-700 rounded hover:bg-gray-600 transition">
+										<h4 class="text-lg font-semibold mb-1">{page.title}</h4>
+										<p class="text-sm">{page.description}</p>
+									</a>
+								))
+							}
+						</div>
+					</div>
+				))
+			}
 		</div>
 	</div>
 </Layout>
