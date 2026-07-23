@@ -54,7 +54,6 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 				title: 'Chara Chronus',
 				description: 'An unofficial chronicle for CharaChorder',
 				url: 'https://andy23512.github.io/chara-chronus/',
-				star: 'chara',
 			},
 			{
 				title: 'Device Comparator',
@@ -120,7 +119,17 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 										data-star={page.star}
 										class="block p-4 bg-gray-700/70 backdrop-blur-sm rounded transition hover:bg-gray-600/80 data-[star]:hover:ring-2 data-[star]:hover:ring-yellow-300/70"
 									>
-										<h4 class="text-lg font-semibold mb-1">{page.title}</h4>
+										<h4 class="text-lg font-semibold mb-1">
+											{page.title}
+											{page.star && (
+												<span
+													class="ml-1 align-middle text-sm text-yellow-300/80"
+													title="Named after a star"
+												>
+													✦<span class="sr-only"> (named after a star)</span>
+												</span>
+											)}
+										</h4>
 										<p class="text-sm">{page.description}</p>
 									</a>
 								))
