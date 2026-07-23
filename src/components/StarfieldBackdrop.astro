@@ -1,0 +1,57 @@
+---
+// A faint field of stars sitting behind the whole page. Project cards turn
+// translucent on hover, so each card becomes a window onto it.
+---
+
+<canvas
+	id="starfield-backdrop"
+	class="pointer-events-none fixed inset-0 -z-10 h-full w-full"
+	aria-hidden="true"></canvas>
+
+<script>
+	const canvas = document.getElementById(
+		'starfield-backdrop',
+	) as HTMLCanvasElement | null;
+	const ctx = canvas?.getContext('2d');
+	if (canvas && ctx) {
+		// Deterministic, so the backdrop never reshuffles on resize.
+		let seed = 6180339;
+		const random = () => {
+			seed = (seed * 1664525 + 1013904223) % 4294967296;
+			return seed / 4294967296;
+		};
+		// Positions are viewport fractions, so a resize just rescales the field.
+		const stars = Array.from({ length: 700 }, () => ({
+			x: random(),
+			y: random(),
+			mag: 3.5 + random() * 3,
+		}));
+
+		function draw() {
+			const dpr = window.devicePixelRatio || 1;
+			const w = window.innerWidth;
+			const h = window.innerHeight;
+			canvas!.width = Math.round(w * dpr);
+			canvas!.height = Math.round(h * dpr);
+			ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+			ctx!.clearRect(0, 0, w, h);
+			for (const star of stars) {
+				const brightness = 6.6 - star.mag;
+				ctx!.fillStyle = `rgba(226, 240, 255, ${0.18 + brightness * 0.2})`;
+				ctx!.beginPath();
+				ctx!.arc(
+					star.x * w,
+					star.y * h,
+					Math.max(0.45, brightness * 0.42),
+					0,
+					Math.PI * 2,
+				);
+				ctx!.fill();
+			}
+		}
+
+		// Painted once and only again on resize: no loop, no idle cost.
+		draw();
+		window.addEventListener('resize', draw);
+	}
+</script>

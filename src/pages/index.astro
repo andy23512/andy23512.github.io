@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css';
 import CelestialSphere from '../components/CelestialSphere.astro';
+import StarfieldBackdrop from '../components/StarfieldBackdrop.astro';
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -91,6 +92,7 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 ---
 
 <Layout>
+	<StarfieldBackdrop />
 	<div class="text-white h-screen flex flex-col">
 		<div class="px-4 py-2 bg-gray-900/80 backdrop-blur-sm flex-none flex items-center gap-2">
 			<h1 class="text-2xl">
@@ -117,7 +119,7 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 										href={page.url}
 										target="_blank"
 										data-star={page.star}
-										class="block p-4 bg-gray-700/70 backdrop-blur-sm rounded transition hover:bg-gray-600/80 data-[star]:hover:ring-2 data-[star]:hover:ring-yellow-300/70"
+										class="project-card block p-4 rounded data-[star]:hover:ring-2 data-[star]:hover:ring-yellow-300/70 data-[star]:focus-visible:ring-2 data-[star]:focus-visible:ring-yellow-300/70"
 									>
 										<h4 class="text-lg font-semibold mb-1">
 											{page.title}
@@ -142,3 +144,58 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 		</div>
 	</div>
 </Layout>
+
+<style>
+	.project-card {
+		position: relative;
+		overflow: hidden;
+		background-color: color-mix(in oklab, var(--color-gray-700) 70%, transparent);
+		backdrop-filter: blur(4px);
+		transition:
+			background-color 0.3s,
+			backdrop-filter 0.3s;
+	}
+
+	/* Pointing at a card clears it, opening a window onto the starfield behind
+	   the page. Kept next to the ::before light so the whole effect lives in
+	   one place. */
+	.project-card:hover,
+	.project-card:focus-visible {
+		background-color: color-mix(in oklab, var(--color-gray-700) 10%, transparent);
+		backdrop-filter: none;
+	}
+
+	/* A soft light trailing the cursor across the card being pointed at. */
+	.project-card::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		transition: opacity 0.3s;
+		background: radial-gradient(
+			18rem circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+			rgba(191, 219, 254, 0.22),
+			transparent 70%
+		);
+	}
+
+	.project-card:hover::before,
+	.project-card:focus-visible::before {
+		opacity: 1;
+	}
+
+	/* Keep the title and description above the light. */
+	.project-card > * {
+		position: relative;
+	}
+</style>
+
+<script>
+	for (const card of document.querySelectorAll<HTMLElement>('.project-card')) {
+		card.addEventListener('pointermove', (event) => {
+			const rect = card.getBoundingClientRect();
+			card.style.setProperty('--pointer-x', `${event.clientX - rect.left}px`);
+			card.style.setProperty('--pointer-y', `${event.clientY - rect.top}px`);
+		});
+	}
+</script>
