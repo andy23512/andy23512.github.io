@@ -75,7 +75,7 @@ export const stars: Star[] = [
 	{ ra: 13.42, dec: -11.161, mag: 0.97, name: 'Spica' },
 	{ ra: 7.755, dec: 28.026, mag: 1.14, name: 'Pollux' },
 	{ ra: 22.961, dec: -29.622, mag: 1.16, name: 'Fomalhaut' },
-	{ ra: 7.577, dec: 31.888, mag: 1.58, name: 'Castor' },
+	{ ra: 7.577, dec: 31.888, mag: 1.58, name: 'Castor', key: 'castor' },
 	{ ra: 10.139, dec: 11.967, mag: 1.35, name: 'Regulus' },
 	{ ra: 6.977, dec: -28.972, mag: 1.5, name: 'Adhara' },
 	{ ra: 14.66, dec: -60.834, mag: -0.27, name: 'Rigil Kentaurus' },
@@ -124,6 +124,8 @@ export const constellationLines: string[][] = [
 	['Alnitak', 'Saiph'],
 	// Canes Venatici
 	['Cor Caroli', 'Chara'],
+	// Gemini, the twins' heads
+	['Castor', 'Pollux'],
 	// Ursa Major
 	['Dubhe', 'Merak', 'Phecda', 'Megrez', 'Alioth', 'Mizar', 'Alkaid'],
 	['Megrez', 'Dubhe'],
