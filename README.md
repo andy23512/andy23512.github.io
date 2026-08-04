@@ -66,4 +66,4 @@ which builds the site and deploys it to GitHub Pages.
 
 ## License
 
-[MIT](LICENSE) © andy23512
+[MIT](LICENSE) © Tangent Chang
