@@ -20,15 +20,12 @@ interface Page {
 	star?: string;
 }
 
-// A group's `slug` doubles as the query param that isolates it, e.g.
-// ?charachorder shows only the CharaChorder group.
-const pageGroup: { name: string; slug: string; pages: Page[] }[] = [
+const pageGroup: { name: string; pages: Page[] }[] = [
 	{
-		name: 'CharaChorder related',
-		slug: 'charachorder',
+		name: 'Web Tools',
 		pages: [
 			{
-				title: 'Tangent\'s Blog',
+				title: 'Blog',
 				description: 'Unofficial CharaChorder and Forge notes and articles, with a Traditional Chinese version linked inside',
 				url: 'https://andy23512.github.io/blog/',
 			},
@@ -84,8 +81,7 @@ const pageGroup: { name: string; slug: string; pages: Page[] }[] = [
 		]
 	},
 	{
-		name: 'Apps & extensions',
-		slug: 'extensions',
+		name: 'Apps & Extensions',
 		pages: [
 			{
 				title: 'Sirius',
@@ -134,53 +130,11 @@ const pageGroup: { name: string; slug: string; pages: Page[] }[] = [
 				],
 			},
 		]
-	},
-	{
-		name: 'Toy Projects',
-		slug: 'toy',
-		pages: [
-			{
-				title: 'Conditional Rock-Paper-Scissors',
-				description: 'A simple conditional RPS game written with support of OpenSpec',
-				url: 'https://andy23512.github.io/crps/',
-			},
-			{
-				title: 'Default Display Viewer',
-				description: 'A viewer for viewing the default display style of each HTML element',
-				url: 'https://andy23512.github.io/default-display-viewer/',
-			},
-			{
-				title: '碼農民曆 · Developer Almanac',
-				description: '為軟體工程師打造的農民曆：每日宜忌、農曆干支節氣、歷史上的軟體大事',
-				url: 'https://andy23512.github.io/developer-almanac/',
-			},
-			{
-				title: 'Praise Generator',
-				description: ' ༼ つ ◕_◕ ༽つ Praise Generator ༼ つ ◕_◕ ༽つ',
-				url: 'https://andy23512.github.io/praise-generator/',
-			}
-		]
 	}
 ]
-
-const groupSlugs = pageGroup.map((group) => group.slug);
-// When ?<slug> isolates a group, hide every other group.
-const groupFilterCss = groupSlugs
-	.map(
-		(slug) =>
-			`:root[data-only="${slug}"] [data-group]:not([data-group="${slug}"]){display:none}`,
-	)
-	.join('\n');
 ---
 
 <Layout>
-	<style is:global set:html={groupFilterCss}></style>
-	<script is:inline define:vars={{ groupSlugs }}>
-		// Runs before the groups are parsed, so isolated groups never flash in.
-		const params = new URLSearchParams(location.search);
-		const only = groupSlugs.find((slug) => params.has(slug));
-		if (only) document.documentElement.dataset.only = only;
-	</script>
 	<StarfieldBackdrop />
 	<div class="text-white h-screen flex flex-col">
 		<div class="px-4 py-2 bg-gray-900/80 backdrop-blur-sm flex-none flex flex-col sm:flex-row sm:items-center sm:gap-2">
@@ -189,7 +143,7 @@ const groupFilterCss = groupSlugs
 			</h1>
 			<span class="hidden sm:inline">-</span>
 			<h2 class="text-lg">
-				CharaChorder tools, toy projects, and a few things named after stars
+				Unofficial CharaChorder web tools, apps, and extensions — a few named after stars
 			</h2>
 		</div>
 		<div class="flex-1 min-h-0 flex flex-col lg:flex-row">
@@ -199,11 +153,14 @@ const groupFilterCss = groupSlugs
 			<div class="flex-1 min-h-0 overflow-auto">
 			{
 				pageGroup.map(group => (
-					<div class="p-4" data-group={group.slug}>
+					<div class="p-4">
 						<h3 class="text-xl mb-2">{group.name}</h3>
 						<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
 							{
-								group.pages.map(page =>
+								group.pages
+									.slice()
+									.sort((a, b) => a.title.localeCompare(b.title))
+									.map(page =>
 									page.links ? (
 										<div
 											data-star={page.star}
