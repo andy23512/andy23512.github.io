@@ -9,7 +9,13 @@ import Layout from '../layouts/Layout.astro';
 interface Page {
 	title: string;
 	description: string;
-	url: string;
+	/** A single-destination card is the link itself; the whole card is clickable. */
+	url?: string;
+	/** A multi-destination card (e.g. an extension on Chrome + Firefox) renders
+	 *  these as buttons instead of being one link. */
+	links?: { label: string; url: string }[];
+	/** Small tag next to the title marking what kind of thing this is. */
+	badge?: string;
 	/** Key of the star this project is named after, see src/data/stars.ts */
 	star?: string;
 }
@@ -75,6 +81,42 @@ const pageGroup: { name: string; slug: string; pages: Page[] }[] = [
 				description: 'An unofficial, experimental editor that allows you to edit the chord library of your CharaChorder device, similar to editing code in a code editor',
 				url: 'https://andy23512.github.io/tccode/',
 			}
+		]
+	},
+	{
+		name: 'Browser extensions',
+		slug: 'extensions',
+		pages: [
+			{
+				title: 'Keybr CC Extension',
+				description: 'An unofficial browser extension for showing the layout of CharaChorder 3D input devices on Keybr',
+				badge: 'extension',
+				links: [
+					{
+						label: 'Chrome',
+						url: 'https://chromewebstore.google.com/detail/keybr-cc-extension/fdofhfbipdhkkhhdjlfjnjfnkibpbdpg',
+					},
+					{
+						label: 'Firefox',
+						url: 'https://addons.mozilla.org/en-US/firefox/addon/keybr-cc-extension/',
+					},
+				],
+			},
+			{
+				title: 'Monkeytype CC Extension',
+				description: 'An unofficial browser extension for showing the layout of CharaChorder 3D input devices on Monkeytype',
+				badge: 'extension',
+				links: [
+					{
+						label: 'Chrome',
+						url: 'https://chromewebstore.google.com/detail/monkeytype-cc-extension/mhfjhmegecimjbohhdbflkhdfnaadple',
+					},
+					{
+						label: 'Firefox',
+						url: 'https://addons.mozilla.org/en-US/firefox/addon/monkeytype-cc-extension/',
+					},
+				],
+			},
 		]
 	},
 	{
@@ -145,27 +187,52 @@ const groupFilterCss = groupSlugs
 						<h3 class="text-xl mb-2">{group.name}</h3>
 						<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
 							{
-								group.pages.map(page => (
-									<a
-										href={page.url}
-										target="_blank"
-										data-star={page.star}
-										class="project-card block p-4 rounded data-[star]:hover:ring-2 data-[star]:hover:ring-yellow-300/70 data-[star]:focus-visible:ring-2 data-[star]:focus-visible:ring-yellow-300/70"
-									>
-										<h4 class="text-lg font-semibold mb-1">
-											{page.title}
-											{page.star && (
-												<span
-													class="ml-1 align-middle text-sm text-yellow-300/80"
-													title="Named after a star"
-												>
-													✦<span class="sr-only"> (named after a star)</span>
-												</span>
-											)}
-										</h4>
-										<p class="text-sm">{page.description}</p>
-									</a>
-								))
+								group.pages.map(page =>
+									page.links ? (
+										<div class="project-card block p-4 rounded">
+											<h4 class="text-lg font-semibold mb-1">
+												{page.title}
+												{page.badge && (
+													<span class="ml-2 align-middle rounded border border-blue-300/40 px-1.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-blue-200/80">
+														{page.badge}
+													</span>
+												)}
+											</h4>
+											<p class="text-sm">{page.description}</p>
+											<div class="mt-3 flex flex-wrap gap-2">
+												{page.links.map(link => (
+													<a
+														href={link.url}
+														target="_blank"
+														class="inline-flex items-center rounded bg-gray-600/60 px-2.5 py-1 text-xs font-medium transition hover:bg-gray-500/70 focus-visible:ring-2 focus-visible:ring-blue-300/70"
+													>
+														{link.label}
+													</a>
+												))}
+											</div>
+										</div>
+									) : (
+										<a
+											href={page.url}
+											target="_blank"
+											data-star={page.star}
+											class="project-card block p-4 rounded data-[star]:hover:ring-2 data-[star]:hover:ring-yellow-300/70 data-[star]:focus-visible:ring-2 data-[star]:focus-visible:ring-yellow-300/70"
+										>
+											<h4 class="text-lg font-semibold mb-1">
+												{page.title}
+												{page.star && (
+													<span
+														class="ml-1 align-middle text-sm text-yellow-300/80"
+														title="Named after a star"
+													>
+														✦<span class="sr-only"> (named after a star)</span>
+													</span>
+												)}
+											</h4>
+											<p class="text-sm">{page.description}</p>
+										</a>
+									)
+								)
 							}
 						</div>
 					</div>
