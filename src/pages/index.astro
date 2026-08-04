@@ -14,9 +14,12 @@ interface Page {
 	star?: string;
 }
 
-const pageGroup: { name: string; pages: Page[] }[] = [
+// A group's `slug` doubles as the query param that isolates it, e.g.
+// ?charachorder shows only the CharaChorder group.
+const pageGroup: { name: string; slug: string; pages: Page[] }[] = [
 	{
 		name: 'CharaChorder related',
+		slug: 'charachorder',
 		pages: [
 			{
 				title: 'Tangent\'s Blog',
@@ -76,6 +79,7 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 	},
 	{
 		name: 'Toy Projects',
+		slug: 'toy',
 		pages: [
 			{
 				title: 'Conditional Rock-Paper-Scissors',
@@ -100,9 +104,25 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 		]
 	}
 ]
+
+const groupSlugs = pageGroup.map((group) => group.slug);
+// When ?<slug> isolates a group, hide every other group.
+const groupFilterCss = groupSlugs
+	.map(
+		(slug) =>
+			`:root[data-only="${slug}"] [data-group]:not([data-group="${slug}"]){display:none}`,
+	)
+	.join('\n');
 ---
 
 <Layout>
+	<style is:global set:html={groupFilterCss}></style>
+	<script is:inline define:vars={{ groupSlugs }}>
+		// Runs before the groups are parsed, so isolated groups never flash in.
+		const params = new URLSearchParams(location.search);
+		const only = groupSlugs.find((slug) => params.has(slug));
+		if (only) document.documentElement.dataset.only = only;
+	</script>
 	<StarfieldBackdrop />
 	<div class="text-white h-screen flex flex-col">
 		<div class="px-4 py-2 bg-gray-900/80 backdrop-blur-sm flex-none flex flex-col sm:flex-row sm:items-center sm:gap-2">
@@ -121,7 +141,7 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 			<div class="flex-1 min-h-0 overflow-auto">
 			{
 				pageGroup.map(group => (
-					<div class="p-4">
+					<div class="p-4" data-group={group.slug}>
 						<h3 class="text-xl mb-2">{group.name}</h3>
 						<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
 							{
