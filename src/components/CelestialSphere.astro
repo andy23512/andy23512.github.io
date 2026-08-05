@@ -4,15 +4,15 @@
 // sphere until that star sits at the centre, and lights it up.
 ---
 
-<div class="pointer-events-none relative h-full w-full">
+<div class="relative h-full w-full">
 	<canvas id="celestial-sphere" class="block h-full w-full" aria-hidden="true"
 	></canvas>
 	<p
 		id="celestial-sphere-caption"
-		class="absolute inset-x-0 bottom-2 text-center text-xs text-blue-200/50 transition-opacity"
+		class="pointer-events-none absolute inset-x-0 bottom-2 text-center text-xs text-blue-200/50 transition-opacity"
 	>
-		Some of my projects are named after stars — hover or focus one to find it on
-		the celestial sphere.
+		Some of my projects are named after stars — hover one to find it here, or
+		click a lit star to jump to its project.
 	</p>
 </div>
 
@@ -255,18 +255,71 @@
 
 		const caption = document.getElementById('celestial-sphere-caption');
 
-		function focusStar(star: Star | null) {
+		// `recenter` spins the sphere to bring the star to the middle (used when a
+		// card points at it). Hovering a star directly on the sphere lights it in
+		// place instead, so it does not slide out from under the cursor.
+		function focusStar(star: Star | null, recenter = true) {
 			highlight = star;
 			drifting = !star;
 			dirty = true;
 			if (caption) caption.style.opacity = star ? '0' : '1';
-			if (star) {
+			if (star && recenter) {
 				targetLon = star.ra * 15;
 				targetLat = star.dec;
-			} else {
+			} else if (!star) {
 				targetLat = 0;
 			}
 		}
+
+		// Stars tied to a project, hit-tested for hover and click on the sphere.
+		const keyedStars = stars.filter((s) => s.key);
+
+		function starAt(px: number, py: number) {
+			let best: Star | null = null;
+			let bestDist = Infinity;
+			for (const star of keyedStars) {
+				const p = project(star.ra, star.dec);
+				if (p.depth <= 0) continue;
+				const dist = Math.hypot(px - p.x, py - p.y);
+				// Enlarged target: real stars are tiny and drifting.
+				const reach = Math.max(14, starRadius(star.mag) * 3);
+				if (dist <= reach && dist < bestDist) {
+					bestDist = dist;
+					best = star;
+				}
+			}
+			return best;
+		}
+
+		let sphereHover: Star | null = null;
+		canvas.addEventListener('pointermove', (event) => {
+			const rect = canvas.getBoundingClientRect();
+			const star = starAt(event.clientX - rect.left, event.clientY - rect.top);
+			if (star === sphereHover) return;
+			sphereHover = star;
+			canvas.style.cursor = star ? 'pointer' : '';
+			focusStar(star, false);
+		});
+		canvas.addEventListener('pointerleave', () => {
+			sphereHover = null;
+			canvas.style.cursor = '';
+			focusStar(null);
+		});
+		canvas.addEventListener('click', (event) => {
+			const rect = canvas.getBoundingClientRect();
+			const star = starAt(event.clientX - rect.left, event.clientY - rect.top);
+			if (!star?.key) return;
+			const card = document.querySelector<HTMLElement>(
+				`[data-star="${star.key}"]`,
+			);
+			if (!card) return;
+			focusStar(star);
+			card.scrollIntoView({
+				behavior: reducedMotion.matches ? 'auto' : 'smooth',
+				block: 'center',
+			});
+			card.querySelector('a')?.focus({ preventScroll: true });
+		});
 
 		// Repaint once when the user flips the reduced-motion setting.
 		reducedMotion.addEventListener('change', () => {

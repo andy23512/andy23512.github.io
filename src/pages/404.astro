@@ -1,0 +1,25 @@
+---
+import '@/styles/global.css';
+import StarfieldBackdrop from '../components/StarfieldBackdrop.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<StarfieldBackdrop />
+	<main
+		class="relative flex h-screen flex-col items-center justify-center px-6 text-center text-white"
+	>
+		<p class="text-7xl font-bold tracking-tight text-yellow-300/90">404</p>
+		<h1 class="mt-4 text-2xl font-semibold">This star isn't on the chart</h1>
+		<p class="mt-2 max-w-md text-blue-200/70">
+			The page you were looking for drifted off the celestial sphere — or never
+			rose above the horizon.
+		</p>
+		<a
+			href="/"
+			class="mt-8 inline-flex items-center rounded bg-gray-700/70 px-4 py-2 text-sm font-medium backdrop-blur-sm transition hover:bg-gray-600/80 focus-visible:ring-2 focus-visible:ring-blue-300/70"
+		>
+			← Back to the Star Chart
+		</a>
+	</main>
+</Layout>
