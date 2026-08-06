@@ -62,6 +62,19 @@ export const stars: Star[] = [
 	{ ra: 12.519, dec: -57.113, mag: 1.63, name: 'Gacrux' },
 	{ ra: 12.252, dec: -58.749, mag: 2.79, name: 'Imai' },
 
+	// Gemini (Castor, Pollux and Alhena are among the bright stars below)
+	{ ra: 6.732, dec: 25.131, mag: 3.06, name: 'Mebsuta' },
+	{ ra: 7.068, dec: 20.57, mag: 4.01, name: 'Mekbuda' },
+	{ ra: 7.335, dec: 21.982, mag: 3.5, name: 'Wasat' },
+	{ ra: 6.383, dec: 22.514, mag: 2.87, name: 'Tejat' },
+	{ ra: 6.248, dec: 22.507, mag: 3.31, name: 'Propus' },
+
+	// Canis Major (Sirius, Adhara and Wezen are among the bright stars below)
+	{ ra: 6.378, dec: -17.956, mag: 1.98, name: 'Mirzam' },
+	{ ra: 7.063, dec: -15.633, mag: 4.12, name: 'Muliphein' },
+	{ ra: 7.402, dec: -29.303, mag: 2.45, name: 'Aludra' },
+	{ ra: 6.338, dec: -30.063, mag: 3.02, name: 'Furud' },
+
 	// Other bright stars
 	{ ra: 6.752, dec: -16.716, mag: -1.46, name: 'Sirius', key: 'sirius' },
 	{ ra: 6.399, dec: -52.696, mag: -0.74, name: 'Canopus' },
@@ -124,8 +137,10 @@ export const constellationLines: string[][] = [
 	['Alnitak', 'Saiph'],
 	// Canes Venatici
 	['Cor Caroli', 'Chara'],
-	// Gemini, the twins' heads
+	// Gemini, the twins
 	['Castor', 'Pollux'],
+	['Castor', 'Mebsuta', 'Tejat', 'Propus'],
+	['Pollux', 'Wasat', 'Mekbuda', 'Alhena'],
 	// Ursa Major
 	['Dubhe', 'Merak', 'Phecda', 'Megrez', 'Alioth', 'Mizar', 'Alkaid'],
 	['Megrez', 'Dubhe'],
@@ -139,6 +154,10 @@ export const constellationLines: string[][] = [
 	// Crux
 	['Acrux', 'Gacrux'],
 	['Mimosa', 'Imai'],
+	// Canis Major, the great dog
+	['Mirzam', 'Sirius', 'Muliphein'],
+	['Sirius', 'Wezen', 'Aludra'],
+	['Wezen', 'Adhara', 'Furud'],
 ];
 
 export const starByKey = new Map(
