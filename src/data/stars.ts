@@ -75,6 +75,16 @@ export const stars: Star[] = [
 	{ ra: 7.402, dec: -29.303, mag: 2.45, name: 'Aludra' },
 	{ ra: 6.338, dec: -30.063, mag: 3.02, name: 'Furud' },
 
+	// Leo (Regulus and Denebola are among the bright stars below)
+	{ ra: 10.333, dec: 19.842, mag: 2.37, name: 'Algieba' },
+	{ ra: 11.235, dec: 20.524, mag: 2.56, name: 'Zosma' },
+	{ ra: 11.237, dec: 15.43, mag: 3.33, name: 'Chort' },
+	{ ra: 10.278, dec: 23.417, mag: 3.43, name: 'Adhafera' },
+	{ ra: 9.879, dec: 26.007, mag: 3.88, name: 'Rasalas' },
+	{ ra: 9.764, dec: 23.774, mag: 2.97, name: 'Algenubi' },
+	{ ra: 10.122, dec: 16.763, mag: 3.48, name: 'η Leo' },
+	{ ra: 11.584, dec: 20.442, mag: 6.45, name: 'Formosa', key: 'formosa' },
+
 	// Other bright stars
 	{ ra: 6.752, dec: -16.716, mag: -1.46, name: 'Sirius', key: 'sirius' },
 	{ ra: 6.399, dec: -52.696, mag: -0.74, name: 'Canopus' },
@@ -158,6 +168,9 @@ export const constellationLines: string[][] = [
 	['Mirzam', 'Sirius', 'Muliphein'],
 	['Sirius', 'Wezen', 'Aludra'],
 	['Wezen', 'Adhara', 'Furud'],
+	// Leo, the lion
+	['Regulus', 'η Leo', 'Algieba', 'Adhafera', 'Rasalas', 'Algenubi'],
+	['Algieba', 'Zosma', 'Denebola', 'Chort', 'Regulus'],
 ];
 
 export const starByKey = new Map(
