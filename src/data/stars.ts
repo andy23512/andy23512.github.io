@@ -85,6 +85,14 @@ export const stars: Star[] = [
 	{ ra: 10.122, dec: 16.763, mag: 3.48, name: 'η Leo' },
 	{ ra: 11.584, dec: 20.442, mag: 6.45, name: 'Formosa', key: 'formosa' },
 
+	// Sagittarius / the Teapot (Kaus Australis and Nunki are among the bright stars below)
+	{ ra: 18.097, dec: -30.424, mag: 2.98, name: 'Alnasl', key: 'alnasl' },
+	{ ra: 18.35, dec: -29.828, mag: 2.72, name: 'Kaus Media' },
+	{ ra: 18.466, dec: -25.421, mag: 2.82, name: 'Kaus Borealis' },
+	{ ra: 19.043, dec: -29.88, mag: 2.6, name: 'Ascella' },
+	{ ra: 18.761, dec: -26.991, mag: 3.17, name: 'φ Sgr' },
+	{ ra: 19.116, dec: -27.67, mag: 3.32, name: 'τ Sgr' },
+
 	// Other bright stars
 	{ ra: 6.752, dec: -16.716, mag: -1.46, name: 'Sirius', key: 'sirius' },
 	{ ra: 6.399, dec: -52.696, mag: -0.74, name: 'Canopus' },
@@ -171,6 +179,10 @@ export const constellationLines: string[][] = [
 	// Leo, the lion
 	['Regulus', 'η Leo', 'Algieba', 'Adhafera', 'Rasalas', 'Algenubi'],
 	['Algieba', 'Zosma', 'Denebola', 'Chort', 'Regulus'],
+	// Sagittarius, the Teapot
+	['Kaus Borealis', 'Kaus Media', 'Alnasl'],
+	['Kaus Media', 'Kaus Australis', 'Ascella', 'φ Sgr', 'Kaus Borealis'],
+	['φ Sgr', 'Nunki', 'τ Sgr', 'Ascella'],
 ];
 
 export const starByKey = new Map(
