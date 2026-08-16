@@ -96,7 +96,7 @@ export const stars: Star[] = [
 	// Other bright stars
 	{ ra: 6.752, dec: -16.716, mag: -1.46, name: 'Sirius', key: 'sirius' },
 	{ ra: 6.399, dec: -52.696, mag: -0.74, name: 'Canopus' },
-	{ ra: 14.261, dec: 19.182, mag: -0.05, name: 'Arcturus' },
+	{ ra: 14.261, dec: 19.182, mag: -0.05, name: 'Arcturus', key: 'arcturus' },
 	{ ra: 18.615, dec: 38.784, mag: 0.03, name: 'Vega' },
 	{ ra: 5.278, dec: 45.998, mag: 0.08, name: 'Capella' },
 	{ ra: 7.655, dec: 5.225, mag: 0.34, name: 'Procyon' },
