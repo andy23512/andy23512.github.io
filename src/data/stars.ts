@@ -97,6 +97,16 @@ export const stars: Star[] = [
 	// Mira is a variable star, 2.0 at its brightest and 10.1 at its faintest. The
 	// chart needs a single number, and this one keeps it the size of its neighbours.
 	{ ra: 2.322, dec: -2.978, mag: 3.04, name: 'Mira', key: 'mira' },
+	{ ra: 2.722, dec: 3.236, mag: 3.47, name: 'Kaffaljidhma' },
+	{ ra: 2.658, dec: 0.329, mag: 4.07, name: 'δ Cet' },
+	{ ra: 1.858, dec: -10.335, mag: 3.72, name: 'Baten Kaitos' },
+	{ ra: 1.734, dec: -15.937, mag: 3.5, name: 'Durre Menthor' },
+	{ ra: 1.4, dec: -8.183, mag: 3.59, name: 'θ Cet' },
+	{ ra: 1.143, dec: -10.182, mag: 3.45, name: 'Deneb Algenubi' },
+	{ ra: 0.324, dec: -8.824, mag: 3.55, name: 'ι Cet' },
+	{ ra: 2.469, dec: 8.46, mag: 4.3, name: 'ξ² Cet' },
+	{ ra: 2.749, dec: 10.114, mag: 4.26, name: 'μ Cet' },
+	{ ra: 2.995, dec: 8.907, mag: 4.7, name: 'λ Cet' },
 
 	// Other bright stars
 	{ ra: 6.752, dec: -16.716, mag: -1.46, name: 'Sirius', key: 'sirius' },
@@ -188,6 +198,10 @@ export const constellationLines: string[][] = [
 	['Kaus Borealis', 'Kaus Media', 'Alnasl'],
 	['Kaus Media', 'Kaus Australis', 'Ascella', 'φ Sgr', 'Kaus Borealis'],
 	['φ Sgr', 'Nunki', 'τ Sgr', 'Ascella'],
+	// Cetus, the sea monster
+	['Menkar', 'λ Cet', 'μ Cet', 'ξ² Cet', 'Kaffaljidhma', 'Menkar'],
+	['Kaffaljidhma', 'δ Cet', 'Mira', 'Baten Kaitos', 'Durre Menthor', 'Diphda'],
+	['Diphda', 'ι Cet', 'Deneb Algenubi', 'θ Cet', 'Baten Kaitos'],
 ];
 
 export const starByKey = new Map(
