@@ -93,6 +93,11 @@ export const stars: Star[] = [
 	{ ra: 18.761, dec: -26.991, mag: 3.17, name: 'φ Sgr' },
 	{ ra: 19.116, dec: -27.67, mag: 3.32, name: 'τ Sgr' },
 
+	// Cetus (Menkar and Diphda are among the bright stars below)
+	// Mira is a variable star, 2.0 at its brightest and 10.1 at its faintest. The
+	// chart needs a single number, and this one keeps it the size of its neighbours.
+	{ ra: 2.322, dec: -2.978, mag: 3.04, name: 'Mira', key: 'mira' },
+
 	// Other bright stars
 	{ ra: 6.752, dec: -16.716, mag: -1.46, name: 'Sirius', key: 'sirius' },
 	{ ra: 6.399, dec: -52.696, mag: -0.74, name: 'Canopus' },
