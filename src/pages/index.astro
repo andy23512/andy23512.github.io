@@ -418,11 +418,21 @@ const sortedPages = pages.slice().sort((a, b) => a.title.localeCompare(b.title))
 <script>
 	const starChartWrapper = document.querySelector<HTMLElement>('#star-chart-wrapper');
 	const toggleButton = document.querySelector<HTMLButtonElement>('#toggle-star-chart');
+	const STORAGE_KEY = 'starChartHidden';
+
+	function setHidden(hidden: boolean) {
+		if (!starChartWrapper || !toggleButton) return;
+		starChartWrapper.hidden = hidden;
+		toggleButton.setAttribute('aria-pressed', String(!hidden));
+		toggleButton.textContent = hidden ? 'Show star chart' : 'Hide star chart';
+	}
+
+	setHidden(localStorage.getItem(STORAGE_KEY) === 'true');
 
 	toggleButton?.addEventListener('click', () => {
 		if (!starChartWrapper) return;
-		starChartWrapper.hidden = !starChartWrapper.hidden;
-		toggleButton.setAttribute('aria-pressed', String(!starChartWrapper.hidden));
-		toggleButton.textContent = starChartWrapper.hidden ? 'Show star chart' : 'Hide star chart';
+		const hidden = !starChartWrapper.hidden;
+		setHidden(hidden);
+		localStorage.setItem(STORAGE_KEY, String(hidden));
 	});
 </script>
