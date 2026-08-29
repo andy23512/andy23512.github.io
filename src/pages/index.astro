@@ -14,169 +14,179 @@ interface Page {
 	/** A multi-destination card (e.g. an extension on Chrome + Firefox) renders
 	 *  these as buttons instead of being one link. */
 	links?: { label: string; url: string }[];
-	/** Small tag next to the title marking what kind of thing this is. */
-	badge?: string;
+	/** Small tags next to the title marking what kind of thing this is and/or
+	 *  what it's for. Also used to drive the badge filter below. */
+	badges?: string[];
 	/** GitHub repo URL, shown as a low-key source link in the card corner. */
 	repo?: string;
 	/** Key of the star this project is named after, see src/data/stars.ts */
 	star?: string;
 }
 
-const pageGroup: { name: string; pages: Page[] }[] = [
+// Controls both the display order of the filter pills and which badges show up as pills at all.
+const badgeOrder = ['Practice', 'Statistics', 'Docs', 'Specs', 'Editor', 'app', 'extension'];
+
+const pages: Page[] = [
 	{
-		name: 'Web Tools',
-		pages: [
-			{
-				title: 'Blog',
-				description: 'Unofficial CharaChorder and Forge notes and articles, with a Traditional Chinese version linked inside',
-				url: 'https://andy23512.github.io/blog/',
-				repo: 'https://github.com/andy23512/blog',
-			},
-			{
-				title: 'Alnasl',
-				description: 'An unofficial practice tool for the built-in mouse of CharaChorder 3D input devices',
-				url: 'https://andy23512.github.io/alnasl/',
-				repo: 'https://github.com/andy23512/alnasl',
-				star: 'alnasl',
-			},
-			{
-				title: 'Alnitak',
-				description: 'An unofficial practice tool tailored for CharaChorder 3D input devices',
-				url: 'https://andy23512.github.io/alnitak/',
-				repo: 'https://github.com/andy23512/alnitak',
-				star: 'alnitak',
-			},
-			{
-				title: 'Alnilam',
-				description: 'An unofficial practice tool tailored for CharaChorder Lite',
-				url: 'https://andy23512.github.io/alnilam/',
-				repo: 'https://github.com/andy23512/alnilam',
-				star: 'alnilam',
-			},
-			{
-				title: 'Arcturus',
-				description: 'An unofficial "Your Life in Weeks" style chart that highlights how many weeks of your life you\'ve spent typing with a CharaChorder',
-				url: 'https://andy23512.github.io/arcturus/',
-				repo: 'https://github.com/andy23512/arcturus',
-				star: 'arcturus',
-			},
-			{
-				title: 'Castor',
-				description: 'An unofficial viewer for seeing a CharaChorder device at its real, physical size on your screen',
-				url: 'https://andy23512.github.io/castor/',
-				repo: 'https://github.com/andy23512/castor',
-				star: 'castor',
-			},
-			{
-				title: 'CCOS Meta Viewer',
-				description: 'An unofficial data viewer for the official CharaChorder Firmware Meta API',
-				url: 'https://andy23512.github.io/ccos-meta-viewer/',
-				repo: 'https://github.com/andy23512/ccos-meta-viewer',
-			},
-			{
-        title: 'Chara',
-				description: 'An unofficial chord practice tool tailored for CharaChorder 3D input devices',
-				url: 'https://andy23512.github.io/chara/',
-				repo: 'https://github.com/andy23512/chara',
-				star: 'chara',
-			},
-			{
-				title: 'Chara Chronus',
-				description: 'An unofficial chronicle for CharaChorder',
-				url: 'https://andy23512.github.io/chara-chronus/',
-				repo: 'https://github.com/andy23512/chara-chronus',
-			},
-			{
-				title: 'CharaChorder Docs',
-				description: 'An unofficial fork of the official CharaChorder documentation, maintained by Tangent',
-				url: 'https://andy23512.github.io/charachorder-docs/',
-				repo: 'https://github.com/andy23512/charachorder-docs',
-			},
-			{
-				title: 'Chorder\'s Almanac',
-				description: 'An unofficial daily almanac for CharaChorder users, with a date-seeded Do / Don\'t, a fortune, and moments from typing history',
-				url: 'https://andy23512.github.io/chorder-almanac/',
-				repo: 'https://github.com/andy23512/chorder-almanac',
-			},
-			{
-				title: 'Device Comparator',
-				description: 'An unofficial website for comparing the differences between the specs of CharaChorder devices',
-				url: 'https://andy23512.github.io/device-comparator/',
-				repo: 'https://github.com/andy23512/device-comparator',
-			},
-			{
-				title: 'Formosa',
-				description: 'A practice tool for typing Bopomofo (Zhuyin) chords',
-				url: 'https://andy23512.github.io/formosa/',
-				repo: 'https://github.com/andy23512/formosa',
-				star: 'formosa',
-			},
-			{
-				title: 'Mira',
-				description: 'An unofficial explorer for the percentile learning curves of CharaChorder devices, showing where a typing speed sits among everyone else\'s at the same point in practice',
-				url: 'https://andy23512.github.io/mira/',
-				repo: 'https://github.com/andy23512/mira',
-				star: 'mira',
-			},
-			{
-				title: 'TanChord Code',
-				description: 'An unofficial, experimental editor that allows you to edit the chord library of your CharaChorder device, similar to editing code in a code editor',
-				url: 'https://andy23512.github.io/tccode/',
-				repo: 'https://github.com/andy23512/tccode',
-			}
-		]
+		title: 'Blog',
+		description: 'Unofficial CharaChorder and Forge notes and articles, with a Traditional Chinese version linked inside',
+		url: 'https://andy23512.github.io/blog/',
+		repo: 'https://github.com/andy23512/blog',
+		badges: ['Docs'],
 	},
 	{
-		name: 'Apps & Extensions',
-		pages: [
+		title: 'Alnasl',
+		description: 'An unofficial practice tool for the built-in mouse of CharaChorder 3D input devices',
+		url: 'https://andy23512.github.io/alnasl/',
+		repo: 'https://github.com/andy23512/alnasl',
+		star: 'alnasl',
+		badges: ['Practice'],
+	},
+	{
+		title: 'Alnitak',
+		description: 'An unofficial practice tool tailored for CharaChorder 3D input devices',
+		url: 'https://andy23512.github.io/alnitak/',
+		repo: 'https://github.com/andy23512/alnitak',
+		star: 'alnitak',
+		badges: ['Practice'],
+	},
+	{
+		title: 'Alnilam',
+		description: 'An unofficial practice tool tailored for CharaChorder Lite',
+		url: 'https://andy23512.github.io/alnilam/',
+		repo: 'https://github.com/andy23512/alnilam',
+		star: 'alnilam',
+		badges: ['Practice'],
+	},
+	{
+		title: 'Arcturus',
+		description: 'An unofficial "Your Life in Weeks" style chart that highlights how many weeks of your life you\'ve spent typing with a CharaChorder',
+		url: 'https://andy23512.github.io/arcturus/',
+		repo: 'https://github.com/andy23512/arcturus',
+		star: 'arcturus',
+		badges: ['Statistics'],
+	},
+	{
+		title: 'Castor',
+		description: 'An unofficial viewer for seeing a CharaChorder device at its real, physical size on your screen',
+		url: 'https://andy23512.github.io/castor/',
+		repo: 'https://github.com/andy23512/castor',
+		star: 'castor',
+		badges: ['Specs'],
+	},
+	{
+		title: 'CCOS Meta Viewer',
+		description: 'An unofficial data viewer for the official CharaChorder Firmware Meta API',
+		url: 'https://andy23512.github.io/ccos-meta-viewer/',
+		repo: 'https://github.com/andy23512/ccos-meta-viewer',
+		badges: ['Specs'],
+	},
+	{
+		title: 'Chara',
+		description: 'An unofficial chord practice tool tailored for CharaChorder 3D input devices',
+		url: 'https://andy23512.github.io/chara/',
+		repo: 'https://github.com/andy23512/chara',
+		star: 'chara',
+		badges: ['Practice'],
+	},
+	{
+		title: 'Chara Chronus',
+		description: 'An unofficial chronicle for CharaChorder',
+		url: 'https://andy23512.github.io/chara-chronus/',
+		repo: 'https://github.com/andy23512/chara-chronus',
+		badges: ['Docs'],
+	},
+	{
+		title: 'CharaChorder Docs',
+		description: 'An unofficial fork of the official CharaChorder documentation, maintained by Tangent',
+		url: 'https://andy23512.github.io/charachorder-docs/',
+		repo: 'https://github.com/andy23512/charachorder-docs',
+		badges: ['Docs'],
+	},
+	{
+		title: 'Chorder\'s Almanac',
+		description: 'An unofficial daily almanac for CharaChorder users, with a date-seeded Do / Don\'t, a fortune, and moments from typing history',
+		url: 'https://andy23512.github.io/chorder-almanac/',
+		repo: 'https://github.com/andy23512/chorder-almanac',
+	},
+	{
+		title: 'Device Comparator',
+		description: 'An unofficial website for comparing the differences between the specs of CharaChorder devices',
+		url: 'https://andy23512.github.io/device-comparator/',
+		repo: 'https://github.com/andy23512/device-comparator',
+		badges: ['Specs'],
+	},
+	{
+		title: 'Formosa',
+		description: 'A practice tool for typing Bopomofo (Zhuyin) chords',
+		url: 'https://andy23512.github.io/formosa/',
+		repo: 'https://github.com/andy23512/formosa',
+		star: 'formosa',
+		badges: ['Practice'],
+	},
+	{
+		title: 'Mira',
+		description: 'An unofficial explorer for the percentile learning curves of CharaChorder devices, showing where a typing speed sits among everyone else\'s at the same point in practice',
+		url: 'https://andy23512.github.io/mira/',
+		repo: 'https://github.com/andy23512/mira',
+		star: 'mira',
+		badges: ['Statistics'],
+	},
+	{
+		title: 'TanChord Code',
+		description: 'An unofficial, experimental editor that allows you to edit the chord library of your CharaChorder device, similar to editing code in a code editor',
+		url: 'https://andy23512.github.io/tccode/',
+		repo: 'https://github.com/andy23512/tccode',
+		badges: ['Editor'],
+	},
+	{
+		title: 'Sirius',
+		description: 'An unofficial cross-platform desktop layout viewer and key tester for CharaChorder 3D that lights up the keys you press in real time',
+		repo: 'https://github.com/andy23512/sirius',
+		star: 'sirius',
+		badges: ['app'],
+		links: [
 			{
-				title: 'Sirius',
-				description: 'An unofficial cross-platform desktop layout viewer and key tester for CharaChorder 3D that lights up the keys you press in real time',
-				badge: 'app',
-				repo: 'https://github.com/andy23512/sirius',
-				star: 'sirius',
-				links: [
-					{
-						label: 'Download',
-						url: 'https://github.com/andy23512/sirius/releases',
-					},
-				],
+				label: 'Download',
+				url: 'https://github.com/andy23512/sirius/releases',
+			},
+		],
+	},
+	{
+		title: 'Keybr CC Extension',
+		description: 'An unofficial browser extension for showing the layout of CharaChorder 3D input devices on Keybr',
+		repo: 'https://github.com/andy23512/keybr-cc-extension',
+		badges: ['extension', 'Practice'],
+		links: [
+			{
+				label: 'Chrome',
+				url: 'https://chromewebstore.google.com/detail/keybr-cc-extension/fdofhfbipdhkkhhdjlfjnjfnkibpbdpg',
 			},
 			{
-				title: 'Keybr CC Extension',
-				description: 'An unofficial browser extension for showing the layout of CharaChorder 3D input devices on Keybr',
-				badge: 'extension',
-				repo: 'https://github.com/andy23512/keybr-cc-extension',
-				links: [
-					{
-						label: 'Chrome',
-						url: 'https://chromewebstore.google.com/detail/keybr-cc-extension/fdofhfbipdhkkhhdjlfjnjfnkibpbdpg',
-					},
-					{
-						label: 'Firefox',
-						url: 'https://addons.mozilla.org/en-US/firefox/addon/keybr-cc-extension/',
-					},
-				],
+				label: 'Firefox',
+				url: 'https://addons.mozilla.org/en-US/firefox/addon/keybr-cc-extension/',
+			},
+		],
+	},
+	{
+		title: 'Monkeytype CC Extension',
+		description: 'An unofficial browser extension for showing the layout of CharaChorder 3D input devices on Monkeytype',
+		repo: 'https://github.com/andy23512/monkeytype-cc-extension',
+		badges: ['extension', 'Practice'],
+		links: [
+			{
+				label: 'Chrome',
+				url: 'https://chromewebstore.google.com/detail/monkeytype-cc-extension/mhfjhmegecimjbohhdbflkhdfnaadple',
 			},
 			{
-				title: 'Monkeytype CC Extension',
-				description: 'An unofficial browser extension for showing the layout of CharaChorder 3D input devices on Monkeytype',
-				badge: 'extension',
-				repo: 'https://github.com/andy23512/monkeytype-cc-extension',
-				links: [
-					{
-						label: 'Chrome',
-						url: 'https://chromewebstore.google.com/detail/monkeytype-cc-extension/mhfjhmegecimjbohhdbflkhdfnaadple',
-					},
-					{
-						label: 'Firefox',
-						url: 'https://addons.mozilla.org/en-US/firefox/addon/monkeytype-cc-extension/',
-					},
-				],
+				label: 'Firefox',
+				url: 'https://addons.mozilla.org/en-US/firefox/addon/monkeytype-cc-extension/',
 			},
-		]
-	}
-]
+		],
+	},
+];
+
+const sortedPages = pages.slice().sort((a, b) => a.title.localeCompare(b.title));
 ---
 
 <Layout>
@@ -190,6 +200,14 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 			<h2 class="text-lg">
 				Unofficial CharaChorder web tools, apps, and extensions — a few named after stars
 			</h2>
+			<button
+				type="button"
+				id="toggle-star-chart"
+				aria-pressed="true"
+				class="self-start sm:ml-auto sm:self-auto shrink-0 rounded border border-blue-300/40 px-2 py-1 text-xs font-medium text-blue-200/80 transition hover:border-blue-300/70"
+			>
+				Hide star chart
+			</button>
 			<a
 				href="https://github.com/andy23512/andy23512.github.io"
 				target="_blank"
@@ -202,86 +220,104 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 			</a>
 		</div>
 		<div class="flex-1 min-h-0 flex flex-col lg:flex-row">
-			<div class="flex-none h-[34vh] lg:h-auto lg:w-2/5 xl:w-1/2">
+			<div id="star-chart-wrapper" class="flex-none h-[34vh] lg:h-auto lg:w-2/5 xl:w-1/2">
 				<CelestialSphere />
 			</div>
 			<div class="flex-1 min-h-0 overflow-auto">
-			{
-				pageGroup.map(group => (
-					<div class="p-4">
-						<h3 class="text-xl mb-2">{group.name}</h3>
-						<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-							{
-								group.pages
-									.slice()
-									.sort((a, b) => a.title.localeCompare(b.title))
-									.map(page => {
-										const header = (
-											<h4 class="text-lg font-semibold mb-1">
-												{page.title}
-												{page.star && (
-													<span
-														class="ml-1 align-middle text-sm text-yellow-300/80"
-														title="Named after a star"
-													>
-														✦<span class="sr-only"> (named after a star)</span>
-													</span>
-												)}
-												{page.badge && (
-													<span class="ml-2 align-middle rounded border border-blue-300/40 px-1.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-blue-200/80">
-														{page.badge}
-													</span>
-												)}
-											</h4>
-										);
-										const source = page.repo && (
-											<a
-												href={page.repo}
-												target="_blank"
-												aria-label={`${page.title} source on GitHub`}
-												class="absolute top-3 right-3 rounded text-blue-200/40 transition hover:text-blue-100 focus-visible:text-blue-100 focus-visible:ring-2 focus-visible:ring-blue-300/70"
-											>
-												<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true">
-													<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-												</svg>
-											</a>
-										);
-										return (
-											<div
-												data-star={page.star}
-												class="project-card rounded data-[star]:hover:ring-2 data-[star]:hover:ring-yellow-300/70 data-[star]:focus-within:ring-2 data-[star]:focus-within:ring-yellow-300/70"
-											>
-											{page.url ? (
-												<a href={page.url} target="_blank" class="block p-4 pr-10">
-													{header}
-													<p class="text-sm">{page.description}</p>
-												</a>
-											) : (
-												<div class="p-4 pr-10">
-													{header}
-													<p class="text-sm">{page.description}</p>
-													<div class="mt-3 flex flex-wrap gap-2">
-														{page.links.map(link => (
-															<a
-																href={link.url}
-																target="_blank"
-																class="inline-flex items-center rounded bg-gray-600/60 px-2.5 py-1 text-xs font-medium transition hover:bg-gray-500/70 focus-visible:ring-2 focus-visible:ring-blue-300/70"
-															>
-																{link.label}
-															</a>
-														))}
-													</div>
-												</div>
-											)}
-											{source}
-											</div>
-										);
-									})
-							}
-						</div>
+				<div class="sticky top-0 z-10 bg-gray-900/90 backdrop-blur-sm p-4 pb-3 flex flex-col gap-2 border-b border-white/10">
+					<label class="sr-only" for="project-search">Search projects</label>
+					<input
+						id="project-search"
+						type="search"
+						placeholder="Search projects…"
+						class="w-full rounded bg-gray-700/60 px-3 py-1.5 text-sm placeholder:text-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300/70"
+					/>
+					<div class="flex flex-wrap gap-2">
+						{
+							badgeOrder.map(badge => (
+								<button
+									type="button"
+									data-badge-filter={badge}
+									aria-pressed="false"
+									class="badge-filter rounded border border-blue-300/40 px-2 py-1 text-[11px] font-medium uppercase tracking-wide text-blue-200/80 transition hover:border-blue-300/70 aria-pressed:bg-blue-400/30 aria-pressed:text-blue-50 aria-pressed:border-blue-300/70"
+								>
+									{badge}
+								</button>
+							))
+						}
 					</div>
-				))
-			}
+				</div>
+				<div class="p-4">
+					<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+						{
+							sortedPages.map(page => {
+								const header = (
+									<h4 class="text-lg font-semibold mb-1">
+										{page.title}
+										{page.star && (
+											<span
+												class="ml-1 align-middle text-sm text-yellow-300/80"
+												title="Named after a star"
+											>
+												✦<span class="sr-only"> (named after a star)</span>
+											</span>
+										)}
+										{page.badges?.map(badge => (
+											<span class="ml-2 align-middle rounded border border-blue-300/40 px-1.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-blue-200/80">
+												{badge}
+											</span>
+										))}
+									</h4>
+								);
+								const source = page.repo && (
+									<a
+										href={page.repo}
+										target="_blank"
+										aria-label={`${page.title} source on GitHub`}
+										class="absolute top-3 right-3 rounded text-blue-200/40 transition hover:text-blue-100 focus-visible:text-blue-100 focus-visible:ring-2 focus-visible:ring-blue-300/70"
+									>
+										<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true">
+											<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+										</svg>
+									</a>
+								);
+								return (
+									<div
+										data-star={page.star}
+										data-badges={page.badges?.join(',') ?? ''}
+										data-search={`${page.title} ${page.description}`.toLowerCase()}
+										class="project-card rounded data-[star]:hover:ring-2 data-[star]:hover:ring-yellow-300/70 data-[star]:focus-within:ring-2 data-[star]:focus-within:ring-yellow-300/70"
+									>
+									{page.url ? (
+										<a href={page.url} target="_blank" class="block p-4 pr-10">
+											{header}
+											<p class="text-sm">{page.description}</p>
+										</a>
+									) : (
+										<div class="p-4 pr-10">
+											{header}
+											<p class="text-sm">{page.description}</p>
+											<div class="mt-3 flex flex-wrap gap-2">
+												{page.links.map(link => (
+													<a
+														href={link.url}
+														target="_blank"
+														class="inline-flex items-center rounded bg-gray-600/60 px-2.5 py-1 text-xs font-medium transition hover:bg-gray-500/70 focus-visible:ring-2 focus-visible:ring-blue-300/70"
+													>
+														{link.label}
+													</a>
+												))}
+											</div>
+										</div>
+									)}
+									{source}
+									</div>
+								);
+							})
+						}
+					</div>
+					<p id="no-results" class="hidden text-sm text-gray-400 mt-4">No projects match your filters.</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -338,4 +374,55 @@ const pageGroup: { name: string; pages: Page[] }[] = [
 			card.style.setProperty('--pointer-y', `${event.clientY - rect.top}px`);
 		});
 	}
+</script>
+
+<script>
+	const searchInput = document.querySelector<HTMLInputElement>('#project-search');
+	const badgeButtons = document.querySelectorAll<HTMLButtonElement>('.badge-filter');
+	const cards = document.querySelectorAll<HTMLElement>('.project-card');
+	const noResults = document.querySelector<HTMLElement>('#no-results');
+	const activeBadges = new Set<string>();
+
+	function applyFilters() {
+		const query = (searchInput?.value ?? '').trim().toLowerCase();
+		let visibleCount = 0;
+		for (const card of cards) {
+			const badges = (card.dataset.badges ?? '').split(',').filter(Boolean);
+			const matchesBadge = activeBadges.size === 0 || badges.some(badge => activeBadges.has(badge));
+			const matchesQuery = query === '' || (card.dataset.search ?? '').includes(query);
+			const visible = matchesBadge && matchesQuery;
+			card.hidden = !visible;
+			if (visible) visibleCount++;
+		}
+		noResults?.classList.toggle('hidden', visibleCount > 0);
+	}
+
+	searchInput?.addEventListener('input', applyFilters);
+
+	for (const button of badgeButtons) {
+		button.addEventListener('click', () => {
+			const badge = button.dataset.badgeFilter;
+			if (!badge) return;
+			if (activeBadges.has(badge)) {
+				activeBadges.delete(badge);
+				button.setAttribute('aria-pressed', 'false');
+			} else {
+				activeBadges.add(badge);
+				button.setAttribute('aria-pressed', 'true');
+			}
+			applyFilters();
+		});
+	}
+</script>
+
+<script>
+	const starChartWrapper = document.querySelector<HTMLElement>('#star-chart-wrapper');
+	const toggleButton = document.querySelector<HTMLButtonElement>('#toggle-star-chart');
+
+	toggleButton?.addEventListener('click', () => {
+		if (!starChartWrapper) return;
+		starChartWrapper.hidden = !starChartWrapper.hidden;
+		toggleButton.setAttribute('aria-pressed', String(!starChartWrapper.hidden));
+		toggleButton.textContent = starChartWrapper.hidden ? 'Show star chart' : 'Hide star chart';
+	});
 </script>
