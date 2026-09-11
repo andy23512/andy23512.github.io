@@ -9,6 +9,8 @@ export interface Star {
 	name?: string;
 	/** Key used to link a star to a project on the home page */
 	key?: string;
+	/** Why the project with this key was named after this star, shown on /stars */
+	origin?: string;
 }
 
 export const stars: Star[] = [
@@ -17,14 +19,38 @@ export const stars: Star[] = [
 	{ ra: 5.242, dec: -8.202, mag: 0.13, name: 'Rigel' },
 	{ ra: 5.418, dec: 6.35, mag: 1.64, name: 'Bellatrix' },
 	{ ra: 5.796, dec: -9.67, mag: 2.06, name: 'Saiph' },
-	{ ra: 5.679, dec: -1.943, mag: 1.77, name: 'Alnitak', key: 'alnitak' },
-	{ ra: 5.604, dec: -1.202, mag: 1.69, name: 'Alnilam', key: 'alnilam' },
+	{
+		ra: 5.679,
+		dec: -1.943,
+		mag: 1.77,
+		name: 'Alnitak',
+		key: 'alnitak',
+		origin:
+			'The name started as a pun on "three" — the tool lets you practice three things at once, and the Chinese character 參 (also read "san," meaning three) led to the working title `typing-san`. That was too obscure for anyone outside Chinese or Japanese, so Tangent looked for a proper star instead and found Alnitak, the first star of the "參宿" (Three Stars) mansion in Chinese astronomy. The wordplay still works: 參 can mean "study," 宿 "place," and 一 "one," reading loosely as a Study Place for CharaChorder One. Alnitak\'s main star being a blue supergiant also became the project\'s blue theme color.',
+	},
+	{
+		ra: 5.604,
+		dec: -1.202,
+		mag: 1.69,
+		name: 'Alnilam',
+		key: 'alnilam',
+		origin:
+			"Alnilam continues the Alnitak naming scheme: CharaChorder Lite was the company's second device, released after the CharaChorder One, so this Lite-focused practice tool took the next star along Orion's belt from Alnitak — Alnilam.",
+	},
 	{ ra: 5.533, dec: -0.299, mag: 2.25, name: 'Mintaka' },
 	{ ra: 5.585, dec: 9.934, mag: 3.39, name: 'Meissa' },
 
 	// Canes Venatici
 	{ ra: 12.934, dec: 38.318, mag: 2.89, name: 'Cor Caroli' },
-	{ ra: 12.562, dec: 41.357, mag: 4.24, name: 'Chara', key: 'chara' },
+	{
+		ra: 12.562,
+		dec: 41.357,
+		mag: 4.24,
+		name: 'Chara',
+		key: 'chara',
+		origin:
+			'Chara\'s name turned up while looking for a star that echoed Alnitak\'s naming style: it\'s the actual star β Canum Venaticorum, and its name also happens to be a substring of "CharaChorder" — a tidy double meaning for a chord practice tool. Following the same logic as Alnitak\'s theme color, Chara being a G-type main-sequence star gave this project its yellow theme.',
+	},
 
 	// Ursa Major
 	{ ra: 11.062, dec: 61.751, mag: 1.79, name: 'Dubhe' },
@@ -83,10 +109,26 @@ export const stars: Star[] = [
 	{ ra: 9.879, dec: 26.007, mag: 3.88, name: 'Rasalas' },
 	{ ra: 9.764, dec: 23.774, mag: 2.97, name: 'Algenubi' },
 	{ ra: 10.122, dec: 16.763, mag: 3.48, name: 'η Leo' },
-	{ ra: 11.584, dec: 20.442, mag: 6.45, name: 'Formosa', key: 'formosa' },
+	{
+		ra: 11.584,
+		dec: 20.442,
+		mag: 6.45,
+		name: 'Formosa',
+		key: 'formosa',
+		origin:
+			'Formosa is a real star: it\'s the official name Taiwan gave to HD 100655 through the IAU\'s 2019 NameExoWorlds campaign, held to mark the IAU\'s 100th anniversary. Formosa is the old Portuguese/Latin name for Taiwan, meaning "beautiful island," and Bopomofo (Zhuyin) is itself a script closely tied to Taiwan — making this the tightest name-to-theme connection among these projects.',
+	},
 
 	// Sagittarius / the Teapot (Kaus Australis and Nunki are among the bright stars below)
-	{ ra: 18.097, dec: -30.424, mag: 2.98, name: 'Alnasl', key: 'alnasl' },
+	{
+		ra: 18.097,
+		dec: -30.424,
+		mag: 2.98,
+		name: 'Alnasl',
+		key: 'alnasl',
+		origin:
+			'Alnasl is Arabic for "the point," marking the arrowhead at the tip of Sagittarius\'s bow — a fitting name for a tool that practices the arrow-shaped mouse cursor built into CharaChorder 3D devices.',
+	},
 	{ ra: 18.35, dec: -29.828, mag: 2.72, name: 'Kaus Media' },
 	{ ra: 18.466, dec: -25.421, mag: 2.82, name: 'Kaus Borealis' },
 	{ ra: 19.043, dec: -29.88, mag: 2.6, name: 'Ascella' },
@@ -96,7 +138,15 @@ export const stars: Star[] = [
 	// Cetus (Menkar and Diphda are among the bright stars below)
 	// Mira is a variable star, 2.0 at its brightest and 10.1 at its faintest. The
 	// chart needs a single number, and this one keeps it the size of its neighbours.
-	{ ra: 2.322, dec: -2.978, mag: 3.04, name: 'Mira', key: 'mira' },
+	{
+		ra: 2.322,
+		dec: -2.978,
+		mag: 3.04,
+		name: 'Mira',
+		key: 'mira',
+		origin:
+			'Mira is the archetypal variable star, its brightness rising and falling over time — and astronomers track stars like it with a light curve, brightness plotted against time. This app plots a learning curve, WPM against days, the same structure in a different domain. Mira was also the first variable star ever discovered, in 1596, and lent its name to an entire class of variable stars (Mira variables) — the original example of recording change as a curve. Its name is Latin for "wonderful."',
+	},
 	{ ra: 2.722, dec: 3.236, mag: 3.47, name: 'Kaffaljidhma' },
 	{ ra: 2.658, dec: 0.329, mag: 4.07, name: 'δ Cet' },
 	{ ra: 1.858, dec: -10.335, mag: 3.72, name: 'Baten Kaitos' },
@@ -109,11 +159,35 @@ export const stars: Star[] = [
 	{ ra: 2.995, dec: 8.907, mag: 4.7, name: 'λ Cet' },
 
 	// Other bright stars
-	{ ra: 6.752, dec: -16.716, mag: -1.46, name: 'Sirius', key: 'sirius' },
+	{
+		ra: 6.752,
+		dec: -16.716,
+		mag: -1.46,
+		name: 'Sirius',
+		key: 'sirius',
+		origin:
+			'Sirius comes from the Greek seirios, "scorching" or "glowing," and it\'s the brightest star in the night sky — a fitting name for a tool that lights up the keys you press in real time.',
+	},
 	{ ra: 6.399, dec: -52.696, mag: -0.74, name: 'Canopus' },
-	{ ra: 14.261, dec: 19.182, mag: -0.05, name: 'Arcturus', key: 'arcturus' },
+	{
+		ra: 14.261,
+		dec: 19.182,
+		mag: -0.05,
+		name: 'Arcturus',
+		key: 'arcturus',
+		origin:
+			"Arcturus carries its own story about elapsed time: its light was used to trigger the opening ceremony of the 1933 Chicago World's Fair, chosen because the star's light was believed to have left Arcturus around 1893 — the year of the previous Chicago World's Fair, roughly 40 years earlier. That theme of light marking the passage of decades made it a fitting name for a tool that visualizes a life in weeks.",
+	},
 	{ ra: 18.615, dec: 38.784, mag: 0.03, name: 'Vega' },
-	{ ra: 5.278, dec: 45.998, mag: 0.08, name: 'Capella', key: 'capella' },
+	{
+		ra: 5.278,
+		dec: 45.998,
+		mag: 0.08,
+		name: 'Capella',
+		key: 'capella',
+		origin:
+			'Capella is the brightest star in Auriga, the Charioteer — a constellation named for a driver who guides the way. That image of being led step by step made it a fitting name for a tutorial site walking users through CharaChorder 3D devices.',
+	},
 	{ ra: 7.655, dec: 5.225, mag: 0.34, name: 'Procyon' },
 	{ ra: 1.629, dec: -57.237, mag: 0.46, name: 'Achernar' },
 	{ ra: 19.846, dec: 8.868, mag: 0.77, name: 'Altair' },
@@ -121,7 +195,15 @@ export const stars: Star[] = [
 	{ ra: 13.42, dec: -11.161, mag: 0.97, name: 'Spica' },
 	{ ra: 7.755, dec: 28.026, mag: 1.14, name: 'Pollux' },
 	{ ra: 22.961, dec: -29.622, mag: 1.16, name: 'Fomalhaut' },
-	{ ra: 7.577, dec: 31.888, mag: 1.58, name: 'Castor', key: 'castor' },
+	{
+		ra: 7.577,
+		dec: 31.888,
+		mag: 1.58,
+		name: 'Castor',
+		key: 'castor',
+		origin:
+			"Castor is a classic calibration and benchmark target in astronomical observation, web star charts, and telescope alignment tools — a star tied to measuring things at their true scale, which mirrors what this viewer does: showing a CharaChorder device at its real, physical size. Castor is also half of the Gemini twins, echoing the tool's own twin mapping — projecting the real, physical input device onto its virtual counterpart on screen.",
+	},
 	{ ra: 10.139, dec: 11.967, mag: 1.35, name: 'Regulus' },
 	{ ra: 6.977, dec: -28.972, mag: 1.5, name: 'Adhara' },
 	{ ra: 14.66, dec: -60.834, mag: -0.27, name: 'Rigil Kentaurus' },
