@@ -219,6 +219,15 @@ export const stars: Star[] = [
 	{ ra: 3.136, dec: 40.956, mag: 2.12, name: 'Algol' },
 	{ ra: 3.405, dec: 49.861, mag: 1.79, name: 'Mirfak' },
 	{ ra: 3.791, dec: 24.105, mag: 2.87, name: 'Alcyone' },
+	{
+		ra: 3.819,
+		dec: 24.053,
+		mag: 3.62,
+		name: 'Atlas',
+		key: 'atlas',
+		origin:
+			'Atlas is a real star in the Pleiades cluster, named for the Titan who was condemned to hold up the sky. That same image is why a bound collection of maps came to be called an atlas in the first place — Mercator\'s 16th-century map collections put the Titan on the cover, holding a globe instead of the heavens. A roadmap is exactly that kind of map, and in myth Atlas is also the father of the Pleiades sisters, fitting for a project that gathers every other star-named tool here into one guided path.',
+	},
 	{ ra: 11.818, dec: 14.572, mag: 2.14, name: 'Denebola' },
 	{ ra: 15.578, dec: 26.715, mag: 2.22, name: 'Alphecca' },
 	{ ra: 17.582, dec: 12.56, mag: 2.08, name: 'Rasalhague' },

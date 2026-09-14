@@ -166,6 +166,14 @@ export const pages: Page[] = [
 		],
 	},
 	{
+		title: 'Atlas',
+		description: 'An unofficial learning roadmap for CharaChorder 3D input devices (CharaChorder One, CharaChorder Two, CCU, and Master Forge)',
+		url: 'https://andy23512.github.io/atlas/',
+		repo: 'https://github.com/andy23512/atlas',
+		star: 'atlas',
+		badges: ['Docs'],
+	},
+	{
 		title: 'Monkeytype CC Extension',
 		description: 'An unofficial browser extension for showing the layout of CharaChorder input devices on Monkeytype',
 		repo: 'https://github.com/andy23512/monkeytype-cc-extension',
