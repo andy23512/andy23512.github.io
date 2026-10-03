@@ -40,6 +40,14 @@ export const pages: Page[] = [
 		badges: ['Practice'],
 	},
 	{
+		title: 'Alhena',
+		description: 'An unofficial layout label editor for CharaChorder 3D input devices (CharaChorder One, CharaChorder Two, CCU and Master Forge)',
+		url: 'https://andy23512.github.io/alhena/',
+		repo: 'https://github.com/andy23512/alhena',
+		star: 'alhena',
+		badges: ['Editor'],
+	},
+	{
 		title: 'Alnilam',
 		description: 'An unofficial practice tool tailored for CharaChorder Lite',
 		url: 'https://andy23512.github.io/alnilam/',

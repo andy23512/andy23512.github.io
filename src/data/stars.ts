@@ -241,7 +241,15 @@ export const stars: Star[] = [
 	{ ra: 0.726, dec: -17.987, mag: 2.04, name: 'Diphda' },
 	{ ra: 5.992, dec: 44.947, mag: 1.9, name: 'Menkalinan' },
 	{ ra: 5.438, dec: 28.608, mag: 1.65, name: 'Elnath' },
-	{ ra: 6.629, dec: 16.399, mag: 1.93, name: 'Alhena' },
+	{
+		ra: 6.629,
+		dec: 16.399,
+		mag: 1.93,
+		name: 'Alhena',
+		key: 'alhena',
+		origin:
+			'Alhena, γ Geminorum, gets its name from the Arabic الهنعة (al-Han\'ah), "the brand" or "the mark" — the same word used for a livestock brand burned into an animal\'s hide (per Richard Hinckley Allen\'s Star Names). That meaning lines up neatly with what this tool does: marking every key of a CharaChorder device\'s layout with its own label.',
+	},
 	{ ra: 7.14, dec: -26.393, mag: 1.83, name: 'Wezen' },
 	{ ra: 8.06, dec: -40.003, mag: 2.21, name: 'Naos' },
 	{ ra: 8.375, dec: -59.51, mag: 1.86, name: 'Avior' },
