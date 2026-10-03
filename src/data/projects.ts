@@ -79,6 +79,13 @@ export const pages: Page[] = [
 		badges: ['Practice'],
 	},
 	{
+		title: 'Chara Lite',
+		description: 'An unofficial chord practice tool tailored for CharaChorder Lite',
+		url: 'https://andy23512.github.io/chara-lite/',
+		repo: 'https://github.com/andy23512/chara-lite',
+		badges: ['Practice'],
+	},
+	{
 		title: 'Chara Chronus',
 		description: 'An unofficial chronicle for CharaChorder',
 		url: 'https://andy23512.github.io/chara-chronus/',
