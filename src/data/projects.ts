@@ -41,7 +41,7 @@ export const pages: Page[] = [
 	},
 	{
 		title: 'Alhena',
-		description: 'An unofficial layout label editor for CharaChorder 3D input devices (CharaChorder One, CharaChorder Two, CCU and Master Forge)',
+		description: 'An unofficial layout label editor for CharaChorder 3D input devices',
 		url: 'https://andy23512.github.io/alhena/',
 		repo: 'https://github.com/andy23512/alhena',
 		star: 'alhena',
@@ -109,7 +109,7 @@ export const pages: Page[] = [
 	},
 	{
 		title: 'Capella',
-		description: 'An unofficial tutorial site for CharaChorder 3D input devices (CharaChorder One, CharaChorder Two, CCU, and Master Forge)',
+		description: 'An unofficial tutorial site for CharaChorder 3D input devices',
 		url: 'https://andy23512.github.io/capella/',
 		repo: 'https://github.com/andy23512/capella',
 		star: 'capella',
@@ -182,7 +182,7 @@ export const pages: Page[] = [
 	},
 	{
 		title: 'Atlas',
-		description: 'An unofficial learning roadmap for CharaChorder 3D input devices (CharaChorder One, CharaChorder Two, CCU, and Master Forge)',
+		description: 'An unofficial learning roadmap for CharaChorder 3D input devices',
 		url: 'https://andy23512.github.io/atlas/',
 		repo: 'https://github.com/andy23512/atlas',
 		star: 'atlas',
