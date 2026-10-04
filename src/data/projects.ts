@@ -204,4 +204,16 @@ export const pages: Page[] = [
 			},
 		],
 	},
+	{
+		title: '10FastFingers CC Extension',
+		description: 'An unofficial browser extension for showing the layout of CharaChorder input devices on 10FastFingers',
+		repo: 'https://github.com/andy23512/10fastfingers-cc-extension',
+		badges: ['extension', 'Practice'],
+		links: [
+			{
+				label: 'Chrome',
+				url: 'https://chromewebstore.google.com/detail/10fastfingers-cc-extensio/ijoddmekpnccpinjpfhgedbdplgdggli',
+			},
+		],
+	},
 ];
