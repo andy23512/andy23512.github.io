@@ -8,7 +8,20 @@ import { pages } from '../data/projects.ts';
 // Controls both the display order of the filter pills and which badges show up as pills at all.
 const badgeOrder = ['Practice', 'Statistics', 'Docs', 'Specs', 'Editor', 'app', 'extension'];
 
-const sortedPages = pages.slice().sort((a, b) => a.title.localeCompare(b.title));
+// "Kind" badges win over topic badges, so e.g. extensions group together at the end instead of under Practice.
+const kindBadges = ['app', 'extension'];
+
+// A card's primary category is its earliest badge in badgeOrder (kind badges first); cards are grouped by that, then sorted by title.
+const categoryRank = (page: (typeof pages)[number]) => {
+	const badges = page.badges ?? [];
+	const kind = badges.find(badge => kindBadges.includes(badge));
+	if (kind) return badgeOrder.indexOf(kind);
+	return Math.min(...badges.map(badge => badgeOrder.indexOf(badge)).filter(i => i !== -1), badgeOrder.length);
+};
+
+const sortedPages = pages
+	.slice()
+	.sort((a, b) => categoryRank(a) - categoryRank(b) || a.title.localeCompare(b.title));
 ---
 
 <Layout>
