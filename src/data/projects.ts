@@ -214,6 +214,10 @@ export const pages: Page[] = [
 				label: 'Chrome',
 				url: 'https://chromewebstore.google.com/detail/10fastfingers-cc-extensio/ijoddmekpnccpinjpfhgedbdplgdggli',
 			},
+			{
+				label: 'Firefox',
+				url: 'https://addons.mozilla.org/en-US/firefox/addon/10fastfingers-cc-extension/',
+			},
 		],
 	},
 ];
