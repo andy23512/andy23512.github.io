@@ -18,9 +18,10 @@ focusing one of those projects spins the sphere to that star and lights it up.
 - Cards are grouped by their primary badge (the earliest one in `badgeOrder`,
   with the kind badges `app` and `extension` taking priority), then sorted
   alphabetically by title at render time.
-- Badges are of three sorts: topic (`Practice`, `Statistics`, `Docs`, `Specs`,
-  `Editor`, `Fun`), audience (`Beginner`, `Pre-purchase`), and kind (`app`,
-  `extension`). Audience badges are placed after the topic badges in
+- Badges are of four sorts: topic (`Practice`, `Statistics`, `Docs`, `Specs`,
+  `Editor`, `Fun`), audience (`Beginner`, `Pre-purchase`), input method
+  (`Character Entry`, `Chorded Entry`), and kind (`app`, `extension`).
+  Audience and input-method badges are placed after the topic badges in
   `badgeOrder` on purpose, so they work as filters without changing which group
   a card sits in.
 - A card is either a single link (the whole card is clickable) or a

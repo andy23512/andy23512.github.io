@@ -37,7 +37,7 @@ export const pages: Page[] = [
 		url: 'https://andy23512.github.io/alnitak/',
 		repo: 'https://github.com/andy23512/alnitak',
 		star: 'alnitak',
-		badges: ['Practice'],
+		badges: ['Practice', 'Character Entry'],
 	},
 	{
 		title: 'Alhena',
@@ -53,7 +53,7 @@ export const pages: Page[] = [
 		url: 'https://andy23512.github.io/alnilam/',
 		repo: 'https://github.com/andy23512/alnilam',
 		star: 'alnilam',
-		badges: ['Practice'],
+		badges: ['Practice', 'Character Entry'],
 	},
 	{
 		title: 'Arcturus',
@@ -84,14 +84,14 @@ export const pages: Page[] = [
 		url: 'https://andy23512.github.io/chara/',
 		repo: 'https://github.com/andy23512/chara',
 		star: 'chara',
-		badges: ['Practice'],
+		badges: ['Practice', 'Chorded Entry'],
 	},
 	{
 		title: 'Chara Lite',
 		description: 'An unofficial chord practice tool tailored for CharaChorder Lite',
 		url: 'https://andy23512.github.io/chara-lite/',
 		repo: 'https://github.com/andy23512/chara-lite',
-		badges: ['Practice'],
+		badges: ['Practice', 'Chorded Entry'],
 	},
 	{
 		title: 'Chara Chronus',
@@ -169,7 +169,7 @@ export const pages: Page[] = [
 		title: 'Keybr CC Extension',
 		description: 'An unofficial browser extension for showing the layout of CharaChorder input devices on Keybr',
 		repo: 'https://github.com/andy23512/keybr-cc-extension',
-		badges: ['extension', 'Practice'],
+		badges: ['extension', 'Practice', 'Character Entry'],
 		links: [
 			{
 				label: 'Chrome',
@@ -193,7 +193,7 @@ export const pages: Page[] = [
 		title: 'Monkeytype CC Extension',
 		description: 'An unofficial browser extension for showing the layout of CharaChorder input devices on Monkeytype',
 		repo: 'https://github.com/andy23512/monkeytype-cc-extension',
-		badges: ['extension', 'Practice'],
+		badges: ['extension', 'Practice', 'Character Entry'],
 		links: [
 			{
 				label: 'Chrome',
@@ -209,7 +209,7 @@ export const pages: Page[] = [
 		title: '10FastFingers CC Extension',
 		description: 'An unofficial browser extension for showing the layout of CharaChorder input devices on 10FastFingers',
 		repo: 'https://github.com/andy23512/10fastfingers-cc-extension',
-		badges: ['extension', 'Practice'],
+		badges: ['extension', 'Practice', 'Character Entry'],
 		links: [
 			{
 				label: 'Chrome',
