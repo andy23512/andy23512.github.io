@@ -10,13 +10,22 @@ focusing one of those projects spins the sphere to that star and lights it up.
 
 ## How it works
 
-- Projects live in the `pageGroup` array in [`src/pages/index.astro`](src/pages/index.astro),
-  split into two groups (**Web Tools**, **Apps & Extensions**). Cards are sorted
+- Projects live in the `pages` array in [`src/data/projects.ts`](src/data/projects.ts).
+  Each card has a `badges` list; the filter pills at the top of the card list
+  are driven by `badgeOrder` in [`src/pages/index.astro`](src/pages/index.astro),
+  which also sets the pill order. A search box filters cards by title and
+  description.
+- Cards are grouped by their primary badge (the earliest one in `badgeOrder`,
+  with the kind badges `app` and `extension` taking priority), then sorted
   alphabetically by title at render time.
+- Badges are of three sorts: topic (`Practice`, `Statistics`, `Docs`, `Specs`,
+  `Editor`, `Fun`), audience (`Beginner`, `Pre-purchase`), and kind (`app`,
+  `extension`). Audience badges are placed after the topic badges in
+  `badgeOrder` on purpose, so they work as filters without changing which group
+  a card sits in.
 - A card is either a single link (the whole card is clickable) or a
   multi-destination card that renders its `links` as buttons (e.g. an extension
-  on Chrome + Firefox, or an app on Download + GitHub). A `badge` shows a small
-  tag such as `APP` or `EXTENSION`.
+  on Chrome + Firefox, or an app on Download + GitHub).
 - To tie a project to a star, give its card a `star: '<key>'` that matches a
   star's `key` in [`src/data/stars.ts`](src/data/stars.ts). That renders a ✦
   marker and makes the sphere focus that star on hover/focus.

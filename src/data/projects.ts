@@ -69,7 +69,7 @@ export const pages: Page[] = [
 		url: 'https://andy23512.github.io/castor/',
 		repo: 'https://github.com/andy23512/castor',
 		star: 'castor',
-		badges: ['Specs'],
+		badges: ['Specs', 'Pre-purchase'],
 	},
 	{
 		title: 'CCOS Meta Viewer',
@@ -113,20 +113,21 @@ export const pages: Page[] = [
 		url: 'https://andy23512.github.io/capella/',
 		repo: 'https://github.com/andy23512/capella',
 		star: 'capella',
-		badges: ['Docs', 'Practice'],
+		badges: ['Docs', 'Practice', 'Beginner'],
 	},
 	{
 		title: 'Chorder\'s Almanac',
 		description: 'An unofficial daily almanac for CharaChorder users, with a date-seeded Do / Don\'t, a fortune, and moments from typing history',
 		url: 'https://andy23512.github.io/chorder-almanac/',
 		repo: 'https://github.com/andy23512/chorder-almanac',
+		badges: ['Fun'],
 	},
 	{
 		title: 'Device Comparator',
 		description: 'An unofficial website for comparing the differences between the specs of CharaChorder devices',
 		url: 'https://andy23512.github.io/device-comparator/',
 		repo: 'https://github.com/andy23512/device-comparator',
-		badges: ['Specs'],
+		badges: ['Specs', 'Pre-purchase'],
 	},
 	{
 		title: 'Formosa',
@@ -186,7 +187,7 @@ export const pages: Page[] = [
 		url: 'https://andy23512.github.io/atlas/',
 		repo: 'https://github.com/andy23512/atlas',
 		star: 'atlas',
-		badges: ['Docs'],
+		badges: ['Docs', 'Beginner'],
 	},
 	{
 		title: 'Monkeytype CC Extension',
